@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+</head>
+<style>
+    body{
+        height: 100lvh;
+        display: flex;
+        align-items: center;
+        background-color: lightblue;
+    }
+    .avatar{
+        background-color: white;
+        display: flex;
+        border-radius: 10px;
+        width: 70%;
+        margin: 0 auto;
+        border-radius: 10px;
+       
+    }
+    p{
+        font-size: 12px;
+    }
+    h2{
+        margin-bottom: 6px;
+        margin-top: 6px;
+    }
+      img{
+        width: 45%;
+        border-radius: 10px;
+    }
+    .formbox{
+        width: 50%;
+        background-color: white;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        margin: 0 auto;
+        margin-bottom: 12px;
+    }   
+    .title{
+        text-align: center;
+    }
+    input{
+        padding: 8px;
+        margin-bottom: 16px;
+        border: 1.5px solid lightgrey;
+        border-radius: 10px;
+    }
+    button{
+        padding: 10px;
+        margin-bottom: 16px;
+        border-radius: 10px;
+    }
+    .login{
+        color: white;
+        background-color: blue;
+        border: none;
+    }
+    .account{
+        border: 1.5px solid  lightgrey;
+        color: black;
+        background-color: white;
+    }
+
+</style>
+<body>
+    <div class="avatar">
+        <img src="WhatsApp Image 2026-04-21 at 10.45.42.jpeg" alt="">
+        <div class="formbox">
+            <form action="">
+                <div class="title">
+                    <h2>Sign In </h2>
+                    <p>Unlock your World </p>
+                </div>
+                <label for="">Email</label>
+                <input type="text" required >
+
+                <label for="">Password</label>
+                <input type="text" required>
+
+                <button class="login">Sign in</button>
+                <button class="account">Create an account</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
