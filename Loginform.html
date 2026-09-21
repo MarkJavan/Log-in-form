@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        .login-form{
+            width: 400px;
+            margin: 40px auto;
+        }
+        .form-field{
+            margin-bottom: 20px;
+        }
+        .form-field label{
+             display: block;
+            margin-bottom: 6px;
+        }
+        .form-field input,
+        .form-field select{
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>LOGIN</h1>
+    <div>
+        <p>Enter your details</p>
+        <form action="" class="login-form">
+            <div class="form-field">
+         <label for="fullName">FullName</label>
+         <input type="text" id="fullName" name="fullName">
+         <label for="email">Email</label>
+         <input type="email" id="email" placeholder="example@gmail.com" required>
+         <label for="password">Password</label>
+         <input type="password" id="password" name="password" >
+         <label for="phoneNumber">PhoneNumber</label>
+         <input type="tel" id="phoneNumber" placeholder="+256700000000" required>
+         <label for="dateOfBirth">Date Of Birth</label>
+         <input type="date" id="dateOfBirth" name="dateOfBirth" required >
+         <label for="age">Age</label>
+         <input type="number" id="age" name="age">  
+         <label for="country">Country</label>
+         <select name="country" id="country">
+            <option value="uganda">Uganda</option>
+            <option value="kenya">Kenya</option>
+            <option value="tanzania">Tanzania</option>
+            <option value="rwanda">Rwanda</option>
+        </select> 
+        <p>Account Type</p>
+            <label>
+                 <input type="radio" name="accountType" value="personal">
+                 personal
+            </label>
+            <label>
+                 <input type="radio" name="accountType" value="business">
+                 Business
+            </label>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
