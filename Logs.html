@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f1f5f4;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 190px;
+            height: 190px;
+            background: #ffdb45;
+            border-radius: 50%;
+            left: -30px;
+            bottom: -85px;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 190px;
+            height: 190px;
+            background: #e95769;
+            transform: rotate(42deg);
+            right: -100px;
+            top: -105px;
+        }
+
+        #container {
+            position: relative;
+            width: 740px;
+            height: 468px;
+            background: #fff;
+            border-radius: 11px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        #forms {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            transition: transform 0.8s cubic-bezier(.68, -.55, .27, 1.55);
+        }
+
+        .form-side {
+            width: 50%;
+            height: 100%;
+            flex-shrink: 0;
+            padding: 70px 70px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+        }
+
+        .form-side h1 {
+            color: #35ad9d;
+            font-size: 28px;
+            margin-bottom: 18px;
+        }
+
+        .social {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 27px;
+        }
+
+        .social span {
+            width: 37px;
+            height: 37px;
+            border: 1px solid #e0e5e4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #202827;
+        }
+
+        .subtitle {
+            color: #a5aaa9;
+            font-size: 11px;
+            margin-bottom: 16px;
+        }
+
+        form {
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .input-box {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 8px;
+            background: #f2f6f5;
+            display: flex;
+            align-items: center;
+            padding: 0 14px;
+        }
+
+        .input-box span {
+            color: #929997;
+            font-size: 14px;
+            margin-right: 8px;
+        }
+
+        .input-box input {
+            width: 100%;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            font-size: 12px;
+            color: #555;
+        }
+
+        .input-box input::placeholder {
+            color: #969c9a;
+        }
+
+        .forgot {
+            display: block;
+            text-align: center;
+            margin: 13px 0 18px;
+            color: #999f9d;
+            font-size: 10px;
+            text-decoration: none;
+        }
+
+        .button {
+            display: block;
+            width: 156px;
+            height: 40px;
+            margin: 20px auto 0;
+            border: 0;
+            border-radius: 22px;
+            background: #38ae9e;
+            color: #fff;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: transform .2s, background .2s;
+        }
+
+        .button:hover {
+            transform: scale(1.03);
+            background: #2fa18f;
+        }
+
+        #signup {
+            position: relative;
+            z-index: 1;
+        }
+
+        #signin {
+            position: relative;
+            z-index: 1;
+        }
+
+        #welcome {
+            position: absolute;
+            z-index: 5;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: transform 0.8s cubic-bezier(.68, -.55, .27, 1.55);
+        }
+
+        #welcome-panel {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            left: 0;
+            display: flex;
+            transition: transform 0.8s cubic-bezier(.68, -.55, .27, 1.55);
+        }
+
+        .welcome-side {
+            width: 50%;
+            height: 100%;
+            flex-shrink: 0;
+            padding: 70px 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            background: linear-gradient(135deg, #3bb5a3, #2eaa99);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-side::before {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            left: -110px;
+            bottom: -100px;
+            background: rgba(255, 255, 255, 0.13);
+        }
+
+        .welcome-side::after {
+            content: "";
+            position: absolute;
+            width: 210px;
+            height: 100px;
+            right: -80px;
+            top: 105px;
+            background: rgba(255, 255, 255, 0.08);
+            transform: rotate(-25deg);
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            position: absolute;
+            top: 17px;
+            left: 18px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #fff;
+            font-size: 12px;
+        }
+
+        .logo-box {
+            width: 22px;
+            height: 22px;
+            border: 1px solid rgba(255,255,255,.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+        }
+
+        .welcome-content h2 {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .welcome-content p {
+            width: 230px;
+            margin: auto;
+            font-size: 12px;
+            line-height: 1.7;
+            color: rgba(255,255,255,.88);
+        }
+
+        .outline-button {
+            width: 155px;
+            height: 41px;
+            margin-top: 28px;
+            border: 1px solid #fff;
+            border-radius: 22px;
+            background: transparent;
+            color: #fff;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1.4px;
+            cursor: pointer;
+            transition: background .2s, color .2s;
+        }
+
+        .outline-button:hover {
+            background: #fff;
+            color: #35ad9d;
+        }
+
+        .shape {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: rgba(255,255,255,.1);
+            transform: rotate(45deg);
+        }
+
+        .shape.one {
+            right: 70px;
+            top: 45px;
+        }
+
+        .shape.two {
+            right: 35px;
+            bottom: 65px;
+        }
+
+        .shape.three {
+            left: 30px;
+            top: 220px;
+            width: 70px;
+            height: 70px;
+            background: rgba(255,255,255,.06);
+        }
+
+        #logo {
+            position: absolute;
+            top: 17px;
+            left: 18px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #fff;
+            font-size: 12px;
+        }
+
+        #loginView {
+            display: none;
+        }
+
+        #container.login-active #welcome {
+            transform: translateX(-100%);
+        }
+
+        #container.login-active #welcome-panel {
+            transform: translateX(-50%);
+        }
+
+        #container.login-active #forms {
+            transform: translateX(-50%);
+        }
+
+        @media (max-width: 760px) {
+            body {
+                padding: 20px;
+                overflow-y: auto;
+            }
+
+            #container {
+                width: 100%;
+                max-width: 500px;
+                height: 620px;
+            }
+
+            .form-side {
+                width: 100%;
+                height: 100%;
+                padding: 65px 35px 40px;
+            }
+
+            #forms {
+                width: 200%;
+            }
+
+            #welcome {
+                width: 100%;
+                height: 45%;
+                top: 55%;
+            }
+
+            #welcome-panel {
+                width: 200%;
+            }
+
+            #container.login-active #forms {
+                transform: translateX(-50%);
+            }
+
+            #container.login-active #welcome {
+                transform: translateX(0);
+            }
+
+            .welcome-side {
+                padding: 35px 25px;
+            }
+
+            .welcome-content h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+
+    <div id="forms">
+
+        <section class="form-side" id="signup">
+            <h1>Create Account</h1>
+
+            <div class="social">
+                <span>f</span>
+                <span>G+</span>
+                <span>in</span>
+            </div>
+
+            <p class="subtitle">or use your email for registration:</p>
+
+            <form>
+                <div class="input-box">
+                    <span>♙</span>
+                    <input type="text" placeholder="Name">
+                </div>
+
+                <div class="input-box">
+                    <span>✉</span>
+                    <input type="email" placeholder="Email">
+                </div>
+
+                <div class="input-box">
+                    <span>♙</span>
+                    <input type="password" placeholder="Password">
+                </div>
+
+                <button class="button" type="submit">SIGN UP</button>
+            </form>
+        </section>
+
+        <section class="form-side" id="signin">
+            <h1>Sign in to Diprella</h1>
+
+            <div class="social">
+                <span>f</span>
+                <span>G+</span>
+                <span>in</span>
+            </div>
+
+            <p class="subtitle">or use your account</p>
+
+            <form>
+                <div class="input-box">
+                    <span>✉</span>
+                    <input type="email" placeholder="Email">
+                </div>
+
+                <div class="input-box">
+                    <span>♙</span>
+                    <input type="password" placeholder="Password">
+                </div>
+
+                <a href="#" class="forgot">Forgot your password?</a>
+
+                <button class="button" type="submit">SIGN IN</button>
+            </form>
+        </section>
+
+    </div>
+
+    <div id="welcome">
+        <div id="welcome-panel">
+
+            <div class="welcome-side">
+                <div class="logo">
+                    <div class="logo-box">♧</div>
+                    Diprella
+                </div>
+
+                <div class="shape one"></div>
+                <div class="shape two"></div>
+                <div class="shape three"></div>
+
+                <div class="welcome-content">
+                    <h2>Hello, Friend!</h2>
+                    <p>Enter your personal details and start your journey with us</p>
+                    <button class="outline-button" id="showSignup">SIGN UP</button>
+                </div>
+            </div>
+
+            <div class="welcome-side">
+                <div class="logo">
+                    <div class="logo-box">♧</div>
+                    Diprella
+                </div>
+
+                <div class="shape one"></div>
+                <div class="shape two"></div>
+                <div class="shape three"></div>
+
+                <div class="welcome-content">
+                    <h2>Welcome Back!</h2>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="outline-button" id="showLogin">SIGN IN</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const container = document.getElementById("container");
+    const showLogin = document.getElementById("showLogin");
+    const showSignup = document.getElementById("showSignup");
+
+    showLogin.addEventListener("click", () => {
+        container.classList.add("login-active");
+    });
+
+    showSignup.addEventListener("click", () => {
+        container.classList.remove("login-active");
+    });
+</script>
+
+</body>
+</html>
